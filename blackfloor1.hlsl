@@ -32,7 +32,7 @@ float3 lin_to_pq(float3 lin) {
 
 float4 main(float2 tex : TEXCOORD0) : COLOR {
 	float4 c0 = tex2D(s0, tex);
-	float3 lin = pq_to_lin(c0.rgb);     
+	float3 lin = pq_to_lin(saturate(c0.rgb));     
 	lin = lin + blackfloor;
 	float3 rgb = lin_to_pq(lin);
 	return float4(rgb.r, rgb.g, rgb.b, blackfloor); //store blackfloor in alpha channel for optional 2nd pass
