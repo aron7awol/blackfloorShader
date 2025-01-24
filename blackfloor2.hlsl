@@ -32,7 +32,7 @@ float3 lin_to_pq(float3 lin) {
 
 float4 main(float2 tex : TEXCOORD0) : COLOR {
 	float4 c0 = tex2D(s0, tex);
-	float3 lin = pq_to_lin(c0.rgb);
+	float3 lin = pq_to_lin(saturate(c0.rgb));
 	float black = blackfloor;
 	if (c0.a < 1) black = blackfloor - c0.a; //offset blackfloor if 1st pass blackfloor was stored in alpha channel
 	lin = lin + black;
